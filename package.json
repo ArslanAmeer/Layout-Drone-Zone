@@ -8,6 +8,14 @@
   },
   "author": "Arslan Ameer",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArslanAmeer/Layout-Drone-Zone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArslanAmeer/Layout-Drone-Zone/issues"
+  },
+  "homepage": "https://github.com/ArslanAmeer/Layout-Drone-Zone#readme",
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "gulp": "^3.9.1",
