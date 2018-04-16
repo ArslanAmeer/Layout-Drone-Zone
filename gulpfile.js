@@ -12,3 +12,14 @@ const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 
 var lessPrefix = new lessAutoPrefix( { browsers: ["Last 2 Versions"]} );
+
+
+// Creating TASKS
+
+gulp.task("Html-Minify", () => {
+    gulp.src("src/*.html")
+        .pipe(htmlMin())
+        .pipe(gulp.dest("dist/"))
+        .pipe(browserSync.stream());
+});
+
