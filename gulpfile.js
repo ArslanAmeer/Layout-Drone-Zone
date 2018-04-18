@@ -16,6 +16,8 @@ var lessPrefix = new lessAutoPrefix( { browsers: ["Last 2 Versions"]} );
 
 // Creating TASKS
 
+// Html Minify Task
+
 gulp.task("Html-Minify", () => {
     gulp.src("src/*.html")
         .pipe(htmlMin())
@@ -23,9 +25,9 @@ gulp.task("Html-Minify", () => {
         .pipe(browserSync.stream());
 });
 
-// JavaScript Minify task
+// JavaScript Minify Task
 
-gulp.task("Js-Minify", function(){
+gulp.task("Js-Minify", () => {
     gulp.src("src/assets/js/*.js")
         .pipe(rename("scripts.min.js"))
         .pipe(sourceMap.init())
@@ -33,4 +35,12 @@ gulp.task("Js-Minify", function(){
         .pipe(sourceMap.write("/maps"))
         .pipe(gulp.dest("dist/assets/js/"))
         .pipe(browserSync.stream());
+});
+
+// Image Minify Task
+
+gulp.task("IMage-Minify", () => {
+    gulp.src("src/asstes/images/*")
+        .pipe(imageMin())
+        .pipe(gulp.dest("dist/assets/images/"))
 });
