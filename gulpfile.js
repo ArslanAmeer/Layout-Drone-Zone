@@ -44,3 +44,17 @@ gulp.task("IMage-Minify", () => {
         .pipe(imageMin())
         .pipe(gulp.dest("dist/assets/images/"))
 });
+
+// LESS Complier Task
+
+gulp.task("Less", () => {
+    gulp.src("src/assets/less/**.*less/")
+    .pipe(sourceMap().init())
+    .pipe(less({
+        plugins: [lessAutoPrefix,lessGLob]
+    }))
+    .pipe(cssMin())
+    .pipe(sourceMap.write("/maps"))
+    .pipe(gulp.dest("dist/assets/css/"))
+    .pipe(browserSync.stream());
+})
