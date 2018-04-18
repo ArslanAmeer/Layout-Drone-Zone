@@ -23,3 +23,14 @@ gulp.task("Html-Minify", () => {
         .pipe(browserSync.stream());
 });
 
+// JavaScript Minify task
+
+gulp.task("Js-Minify", function(){
+    gulp.src("src/assets/js/*.js")
+        .pipe(rename("scripts.min.js"))
+        .pipe(sourceMap.init())
+        .pipe(jsMin())
+        .pipe(sourceMap.write("/maps"))
+        .pipe(gulp.dest("dist/assets/js/"))
+        .pipe(browserSync.stream());
+});
