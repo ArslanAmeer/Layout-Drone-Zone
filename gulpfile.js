@@ -20,7 +20,7 @@ var lessPrefix = new lessAutoPrefix( { browsers: ["Last 2 Versions"]} );
 
 gulp.task("Html-Minify", () => {
     gulp.src("src/*.html")
-        .pipe(htmlMin())
+        .pipe(htmlMin({collapseWhitespace: true}))
         .pipe(gulp.dest("dist/"))
         .pipe(browserSync.stream());
 });
@@ -29,8 +29,8 @@ gulp.task("Html-Minify", () => {
 
 gulp.task("Js-Minify", () => {
     gulp.src("src/assets/js/*.js")
-        .pipe(rename("scripts.min.js"))
         .pipe(sourceMap.init())
+        .pipe(concat("script.min.js"))
         .pipe(jsMin())
         .pipe(sourceMap.write("/maps"))
         .pipe(gulp.dest("dist/assets/js/"))
@@ -39,8 +39,8 @@ gulp.task("Js-Minify", () => {
 
 // Image Minify Task
 
-gulp.task("IMage-Minify", () => {
-    gulp.src("src/asstes/images/*")
+gulp.task("Image-Minify", () => {
+    gulp.src("src/assets/images/*")
         .pipe(imageMin())
         .pipe(gulp.dest("dist/assets/images/"))
 });
@@ -49,7 +49,7 @@ gulp.task("IMage-Minify", () => {
 
 gulp.task("Less", () => {
     gulp.src("src/assets/less/**.*less/")
-    .pipe(sourceMap().init())
+    .pipe(sourceMap.init())
     .pipe(less({
         plugins: [lessAutoPrefix,lessGLob]
     }))
@@ -65,7 +65,7 @@ gulp.task("serve",function(){
     browserSync.init({
         server: "dist",
         port: 2712,
-        host: "192.168.10.66",
+        // host: "192.168.10.66",
         browser: "Firefox"
     });
     gulp.watch("src/assets/less/**/*.less", ["less"]);
@@ -77,4 +77,4 @@ gulp.task("serve",function(){
 
 // Gulp Default Task 
 
-gulp.task("default",["Image-Minify", "Html-Minify", "Js-Minify", "less", "serve"]);
+gulp.task("default",["Image-Minify", "Html-Minify", "Js-Minify", "Less", "serve"]);
