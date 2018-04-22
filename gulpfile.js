@@ -1,80 +1,83 @@
+
+// Requiring Packages!
+
 const gulp = require("gulp");
+const htmlmin = require("gulp-htmlmin");
 const less = require("gulp-less");
-const lessAutoPrefix = require("less-plugin-autoprefix");
-const lessGLob = require("less-plugin-glob");
-const cssMin = require("gulp-clean-css");
-const jsMin = require("gulp-uglify-es").default;
-const imageMin = require("gulp-imagemin");
-const htmlMin = require("gulp-htmlmin");
-const sourceMap = require("gulp-sourcemaps");
-const concat = require("gulp-concat");
+const cleanCss = require("gulp-clean-css");
+const jsmin = require("gulp-uglify-es").default;
 const rename = require("gulp-rename");
-const browserSync = require("browser-sync").create();
+const concat = require("gulp-concat");
+const imagemin = require("gulp-imagemin");
+const sourcemaps = require("gulp-sourcemaps");
+const LessAutoprefix = require("less-plugin-autoprefix");
+const BrowserSync = require("browser-sync").create();
 
-var lessPrefix = new lessAutoPrefix( { browsers: ["Last 2 Versions"]} );
+var autoprefix = new LessAutoprefix({ browsers: ["last 2 versions"] });
 
+var lessDir = "src/assets/less/";
 
-// Creating TASKS
+// Tasks: Minify and Compile
 
-// Html Minify Task
-
-gulp.task("Html-Minify", () => {
+gulp.task("html-minify", function () {
     gulp.src("src/*.html")
-        .pipe(htmlMin({collapseWhitespace: true}))
-        .pipe(gulp.dest("dist/"))
-        .pipe(browserSync.stream());
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest("dist"));
 });
 
-// JavaScript Minify Task
-
-gulp.task("Js-Minify", () => {
-    gulp.src("src/assets/js/*.js")
-        .pipe(sourceMap.init())
-        .pipe(concat("script.min.js"))
-        .pipe(jsMin())
-        .pipe(sourceMap.write("/maps"))
-        .pipe(gulp.dest("dist/assets/js/"))
-        .pipe(browserSync.stream());
-});
-
-// Image Minify Task
-
-gulp.task("Image-Minify", () => {
+gulp.task("image-minify", () =>
     gulp.src("src/assets/images/*")
-        .pipe(imageMin())
-        .pipe(gulp.dest("dist/assets/images/"))
+        .pipe(imagemin())
+        .pipe(gulp.dest("dist/assets/images"))
+);
+
+gulp.task("js-minify", function(){
+    gulp.src("src/assets/js/*.js")
+        .pipe(sourcemaps.init())
+        .pipe(concat("allscript.min.js"))
+        .pipe(jsmin())
+        .pipe(sourcemaps.write("/maps"))
+        .pipe(gulp.dest("dist/assets/js/"))
+        .pipe(BrowserSync.stream());
 });
 
-// LESS Complier Task
+gulp.task("less", function () {
+    gulp.src(lessDir + "main.less")
+        .pipe(rename("allstyle.min.css"))
+        .pipe(sourcemaps.init())
+        .pipe(less({
+            plugins: [autoprefix, require("less-plugin-glob")]
+        }))
+        .pipe(cleanCss())
+        .pipe(sourcemaps.write("/maps"))
+        .pipe(gulp.dest("dist/assets/css/"))
+        .pipe(BrowserSync.stream());
+});
 
-gulp.task("Less", () => {
-    gulp.src("src/assets/less/**.*less/")
-    .pipe(sourceMap.init())
-    .pipe(less({
-        plugins: [lessAutoPrefix,lessGLob]
-    }))
-    .pipe(cssMin())
-    .pipe(sourceMap.write("/maps"))
-    .pipe(gulp.dest("dist/assets/css/"))
-    .pipe(browserSync.stream());
-})
+gulp.task("copy-fonts", function () {
+    gulp.src("src/assets/fonts/*")
+        .pipe(gulp.dest("dist/assets/fonts/"))
+});
 
-////  Watch and Serve Task
 
-gulp.task("serve",function(){
-    browserSync.init({
+// Tasks: Watch, Build and Serve
+
+gulp.task("serve", function () {
+    BrowserSync.init({
         server: "dist",
         port: 2712,
-        // host: "192.168.10.66",
+        host: "192.168.10.66",
         browser: "Firefox"
     });
-    gulp.watch("src/assets/less/**/*.less", ["less"]);
-    gulp.watch("src/*.html",["Html-Minify"]);
-    gulp.watch("src/assets/js/*.js",["Js-Minify"]);
-    gulp.watch("src/assets/images/*",["Image-Minify"]);
-    gulp.watch("dist/assets/*html").on("change", browserSync.reload);
+    gulp.watch("src/*.html", ["html-minify"]);
+    gulp.watch("src/assets/images/*", ["image-minify"]);
+    gulp.watch("src/assets/fonts/*", ["copy-fonts"]);
+    gulp.watch("src/assets/js/*.js",["js-minify"])
+    gulp.watch(lessDir + "**/*.less", ["less"]);
+    gulp.watch("dist/*.html").on("change", BrowserSync.reload);
 });
 
-// Gulp Default Task 
 
-gulp.task("default",["Image-Minify", "Html-Minify", "Js-Minify", "Less", "serve"]);
+// Tasks: Default Build Trigger
+
+gulp.task("default", ["copy-fonts", "html-minify", "image-minify", "js-minify", "less", "serve"]);
