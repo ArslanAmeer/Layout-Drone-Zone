@@ -66,7 +66,7 @@ gulp.task("serve", function () {
     BrowserSync.init({
         server: "dist",
         port: 2712,
-        host: "192.168.10.66",
+        // host: "192.168.10.66",
         browser: "Firefox"
     });
     gulp.watch("src/*.html", ["html-minify"]);
