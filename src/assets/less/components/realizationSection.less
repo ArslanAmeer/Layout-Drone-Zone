@@ -1,7 +1,7 @@
 .realization {
     margin: 0;
     padding: 0; // height: 60vh;
-    background-color: lightgray;
+    background-color: rgb(230,230,230);
     padding: 60px 0;
     text-align: center;
     .narrow {
@@ -21,7 +21,7 @@
             }
             p {
                 margin: 25px;
-                color: rgb(56, 56, 56);
+                color: @content-color;
             }
         }
     }
@@ -32,6 +32,10 @@
         background-color: rgb(2, 51, 116);
         color: whitesmoke;
         .roundedbtn;
+        transition: all .3s;
+        &:hover{
+            background-color: lighten(rgb(2, 51, 116),10%);
+        }
     }
 }
 
