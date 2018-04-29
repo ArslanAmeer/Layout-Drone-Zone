@@ -1,0 +1,79 @@
+.drones{
+    padding: 60px 0;
+    background-color: grey;
+    .narrow{
+
+        .specs-head{
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+            // margin: auto;
+            h1{
+                padding: 10px 0;
+            }
+            p{
+                line-height: 1.5em;
+            }
+        }
+
+        .specs{
+            // width: 75vw;
+            font-size: .8em;
+            margin: auto;
+            .card{
+                border: 1px solid black;
+                display: flex;
+                align-items: center;
+                .sr-no{
+                    text-align: center;
+                    width: 35px;
+                    height: 35px;
+                    border: 1px solid black;
+                    border-radius: 50px;
+                    padding: 9px;
+                }
+                p{
+                    padding: 5px 15px;
+                    line-height: 1.5em;
+                }
+            }
+        }
+
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .drones{
+        .narrow{
+            .specs-head{
+                width: 45vw;
+                margin: 0;
+                text-align: inherit;
+                p{
+                    line-height: 2em;                    
+                }
+            }
+
+            .specs{
+                width: 45vw;
+                height: 30vh;
+                margin: 0;
+                .card{
+                    border: 1px solid black;
+                    width: 50%;
+                    display: flex;
+                    align-items: center;
+                    float: left;
+                    p{
+                        padding: 5px 15px;
+                        line-height: 1.5em;
+                    }
+                }
+                &:after{
+                    clear: both;
+                }
+            }
+        }
+    }
+}
