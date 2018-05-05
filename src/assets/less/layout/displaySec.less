@@ -1,4 +1,54 @@
 .displaySec{
-    height: 80vh;
-    background-color: grey;
+    background-color: rgb(230,230,230);
+    .narrow{
+        display: flex;
+        flex-flow: column nowrap;
+        .disArc{
+            text-align: center;
+            margin: 80px 0;
+            h2{
+                .grad-color;
+            }
+            p{
+                line-height: 1.5em;
+                margin: 10px 0;
+                font-size: .9em;
+                color: @content-color;
+            }
+            a {
+                margin-top: 50px;
+                display: inline-block;
+                padding: 10px 60px;
+                background-color: rgb(2, 51, 116);
+                color: whitesmoke;
+                .roundedbtn;
+                transition: all .3s;
+                &:hover{
+                    background-color: lighten(rgb(2, 51, 116),10%);
+                }
+            }
+        }
+        div.video-responsive{
+            margin: 50px 0;
+        }
+    }
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    .shadow;
+}
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+@media (min-width: 1024px) {
+    
 }
