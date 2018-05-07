@@ -14,10 +14,15 @@ hamBtn.addEventListener("click", () => {
     }
 });
 
-function myMap() {
-    var mapProp = {
-        center: new google.maps.LatLng(40.728884, -74.077059),
-        zoom: 5,
-    };
-    var map = new google.maps.Map(document.getElementById("myMap"), mapProp);
+function initMap() {
+    var location = {lat:40.712775, lng:-74.005973};
+    var map = new google.maps.Map(document.getElementById("map"),{
+        zoom: 10,
+        center: location,
+        gestureHandling: 'cooperative'
+    }); 
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
 }
