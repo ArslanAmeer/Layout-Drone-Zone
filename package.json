@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/ArslanAmeer/Layout-Drone-Zone#readme",
   "dependencies": {
-    "npm-check-updates": "^2.14.0"
+    "npm-check-updates": "^2.14.2"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.9.2",
+    "gulp-clean-css": "^3.9.4",
     "gulp-concat": "^2.6.1",
     "gulp-htmlmin": "^4.0.0",
     "gulp-imagemin": "^4.1.0",
@@ -31,6 +31,6 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify-es": "^1.0.1",
     "less-plugin-autoprefix": "^1.5.1",
-    "less-plugin-glob": "^2.0.1"
+    "less-plugin-glob": "^2.0.2"
   }
 }
