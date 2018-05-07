@@ -1,0 +1,42 @@
+.signup {
+    height: 50vh;
+    background: rgba(255, 0, 0, 0.7);
+    background: -webkit-linear-gradient( left, rgba(255, 0, 0, 0.7), rgba(255, 123, 0, 0.7)), url("../images/newsletter-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        font-size: 1.5em;
+    }
+    .subscribe {
+        input {
+            border: none;
+            font-size: 1em;
+            padding: 0 20px;
+        }
+        button {
+            border: 1px solid #fff;
+            color: maroon;
+            background-color: #fff;
+            border-radius: 50px;
+            padding: 10px;
+            font-size: 1em;
+            padding: 10px 40px;
+        }
+        border: 1px solid white;
+        border-radius: 50px; // width: 350px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .signup{
+        h1 {
+            font-size: 2em;
+        }
+
+    }
+}
