@@ -53,13 +53,13 @@
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia, ratione! Impedit laboriosam ratione ea.</p>
 
                     <div class="hero-btns">
-                        <a href="#">Ask For Price</a>
+                        <a id="toSignuUp" href="#">Ask For Price</a>
                         <a href="#">► Watch Video</a>
                     </div>
 
                 </section>
 
-                <img src="assets/images/scroll.svg" alt="scroll">
+                <img id="toView" src="assets/images/scroll.svg" alt="scroll">
 
 
             </div>
@@ -96,7 +96,7 @@
 
             </div>
 
-            <a href="#">Ask for price</a>
+            <a id="toSignuUp" href="#">Ask for price</a>
 
         </section>
 
@@ -155,7 +155,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis.Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Vestibulum quis.
                         </p>
-                        <a href="#">Ask For Price</a>
+                        <a id="toSignuUp"  href="#">Ask For Price</a>
                     </article>
                     <div class="vid-wrap">
                         <div class="video-responsive">
@@ -173,7 +173,7 @@
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis.Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit. Vestibulum quis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis.
                         </p>
-                        <a href="#">Ask For Price</a>
+                        <a id="toSignuUp"  href="#">Ask For Price</a>
                     </article>
                     <div class="vid-wrap2">
                         <div class="video-responsive">
@@ -199,12 +199,37 @@
 
     </div>
 
-    <footer>
+    <footer class="foo hide">
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum.</p>
         <p>Copyrights &copy; <strong>Arslan Ameer</strong> | Team-Dev</p>
     </footer>
+
     <script src="assets/js/allscript.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuDiaL_38l07wVjMbGOxsuk4hQQ3kknGE&callback=initMap" ></script>
-</body>
+    <script>
+        document.getElementById('toView').addEventListener('click', (e) => {
+            document.querySelector(".realization").scrollIntoView();
+            e.preventDefault();
+        });
 
+        var elms = document.querySelectorAll('#toSignuUp');
+        for (let i = 0; i < elms.length; i++) {
+            elms[i].addEventListener('click', (e) => {
+                document.querySelector(".signup").scrollIntoView();
+                e.preventDefault();
+            });                        
+        }        
+       
+
+        requestScrollAnimation((pos) => {
+            var elAlert = document.querySelector('.foo');
+            var isVisible = isScrolledIntoView(elAlert, false);
+
+            if (isVisible) {
+                elAlert.classList.remove('hide');
+            }
+        });
+    </script>
+
+</body>
 </html>

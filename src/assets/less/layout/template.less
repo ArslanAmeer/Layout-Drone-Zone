@@ -1,10 +1,11 @@
 html{
-    font-size: 64.2%;
+    font-size: 64.2%;    
 }
 
 body{
     font-size: 1.6rem;
     color: @primary-color;
+    scroll-behavior: smooth;
     .no-text;
 }
 
@@ -20,4 +21,12 @@ body{
     @media (min-width: 550px) {
         width: 75vw;
     }
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+.foo{
+    transition: opacity 800ms ease-in-out 1100ms;
 }
